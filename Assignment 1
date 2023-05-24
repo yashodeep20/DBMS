@@ -1,0 +1,183 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 18
+Server version: 8.0.33 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database employee;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> create database Yash
+    -> ;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use Yash
+Database changed
+mysql> create table employee(
+    -> Id int(3) primary key,
+    -> Name varchar(25) not null,
+    -> Designation varchar(10) not null,
+    -> Department varchar(10) not null
+    -> );
+Query OK, 0 rows affected, 1 warning (0.03 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_yash |
++----------------+
+| employee       |
++----------------+
+1 row in set (0.01 sec)
+
+mysql> insert into employee values(001,'Yash','AP','Computer');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee values(002,'Raj','Technician','Computer');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee values(003,'Sam','AP','IT');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee values(004,'Neel','LA','IT');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee values(005,'Manish','AP','Civil');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into employee values(006,'Om','AP','Civil');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT *FROM employee
+    -> ;
++----+--------+-------------+------------+
+| Id | Name   | Designation | Department |
++----+--------+-------------+------------+
+|  1 | Yash   | AP          | Computer   |
+|  2 | Raj    | Technician  | Computer   |
+|  3 | Sam    | AP          | IT         |
+|  4 | Neel   | LA          | IT         |
+|  5 | Manish | AP          | Civil      |
+|  6 | Om     | AP          | Civil      |
++----+--------+-------------+------------+
+6 rows in set (0.00 sec)
+mysql> SELECT Name FROM employee where Department='IT';
++------+
+| Name |
++------+
+| Sam  |
+| Neel |
++------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT Name FROM employee where Department='Computer' and Id=2;
++------+
+| Name |
++------+
+| Raj  |
++------+
+1 row in set (0.00 sec)
+
+mysql> SELECT count(*) FROM employee;
++----------+
+| count(*) |
++----------+
+|        6 |
++----------+
+1 row in set (0.01 sec)
+
+mysql> create table person(
+    -> Firstname varchar(10) primary key,
+    -> Middlename varchar(10) not null,
+    -> Lastname varchar(10) not null
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_yash |
++----------------+
+| employee       |
+| person         |
++----------------+
+2 rows in set (0.00 sec)
+
+mysql> DROP TABLE person;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_yash |
++----------------+
+| employee       |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> UPDATE employee
+    -> SET Name='Yashodeep'
+    -> WHERE Id=1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT *FROM employee;
++----+-----------+-------------+------------+
+| Id | Name      | Designation | Department |
++----+-----------+-------------+------------+
+|  1 | Yashodeep | AP          | Computer   |
+|  2 | Raj       | Technician  | Computer   |
+|  3 | Sam       | AP          | IT         |
+|  4 | Neel      | LA          | IT         |
+|  5 | Manish    | AP          | Civil      |
+|  6 | Om        | AP          | Civil      |
++----+-----------+-------------+------------+
+6 rows in set (0.00 sec)
+
+mysql> ALTER TABLE employee ADD Salary int(10);
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> SELECT *FROM employee;
++----+-----------+-------------+------------+--------+
+| Id | Name      | Designation | Department | Salary |
++----+-----------+-------------+------------+--------+
+|  1 | Yashodeep | AP          | Computer   |   NULL |
+|  2 | Raj       | Technician  | Computer   |   NULL |
+|  3 | Sam       | AP          | IT         |   NULL |
+|  4 | Neel      | LA          | IT         |   NULL |
+|  5 | Manish    | AP          | Civil      |   NULL |
+|  6 | Om        | AP          | Civil      |   NULL |
++----+-----------+-------------+------------+--------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT *FROM employee
+    -> WHERE ID=4;
++----+------+-------------+------------+--------+
+| Id | Name | Designation | Department | Salary |
++----+------+-------------+------------+--------+
+|  4 | Neel | LA          | IT         |   NULL |
++----+------+-------------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> ALTER TABLE employee
+    -> DROP COLUMN Salary;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT *FROM employee;
++----+-----------+-------------+------------+
+| Id | Name      | Designation | Department |
++----+-----------+-------------+------------+
+|  1 | Yashodeep | AP          | Computer   |
+|  2 | Raj       | Technician  | Computer   |
+|  3 | Sam       | AP          | IT         |
+|  4 | Neel      | LA          | IT         |
+|  5 | Manish    | AP          | Civil      |
+|  6 | Om        | AP          | Civil      |
++----+-----------+-------------+------------+
+6 rows in set (0.00 sec)
